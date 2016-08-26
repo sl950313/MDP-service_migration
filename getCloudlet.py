@@ -36,15 +36,13 @@ def getDistance(Lat_A, Lng_A, Lat_B, Lng_B):
 #  print getDistance(32.060255, 118.796877, 39.904211, 116.407395)
 
 
-def getCloudlet(latitude, longitude, cloudletPositions):
-   cloudlet = 1
+def getCloudlet(latitude, longitude, cloudlet_pos):
+   cloudlet = 0
    i  = 0
    min_c = 100000
-   for position in cloudletPositions:
-      i += 1
-      position_t = position.split(' ')
-      dis = getDistance((float)(latitude), (float)(longitude), (float)(position_t[1]), (float)(position_t[2]))
+   for i in range(len(cloudlet_pos)):
+      dis = getDistance((float)(latitude), (float)(longitude), (float)(cloudlet_pos[i][0]), (float)(cloudlet_pos[i][1]))
       if dis < min_c:
          min_c = dis
-         cloudlet = i
+         cloudlet = i + 1
    return cloudlet
